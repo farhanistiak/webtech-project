@@ -1,0 +1,23 @@
+<?php
+session_start();
+require_once('../Models/alldb.php');
+$id=$_POST['id'];
+$pass=$_POST['pass'];
+$res=auth($id,$pass);
+if($res)
+{
+	$_SESSION['id']=$id;
+	if($_SESSION['type']=="ADMIN"){
+		header("location:../Views/admin.php");
+	}
+	else
+{
+	header("location:../Views/log.php");
+}
+   
+}
+else
+{
+	header("location:../Views/log.php");
+}
+?>
